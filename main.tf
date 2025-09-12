@@ -55,8 +55,8 @@ resource "google_storage_bucket_object" "image_txt" {
   source = "./image/test.txt"
 }
 
-# resource "google_storage_bucket_object" "image_png" {
-#   name   = "image/kitten.png"
-#   bucket = google_storage_bucket.default.name
-#   source = "./image/kitten.png"
-# }
+resource "google_storage_bucket_object" "image_png" {
+  name   = "image/kitten.png"
+  bucket = google_storage_bucket.default.name
+  source = "./image/kitten.png"
+}
