@@ -20,12 +20,17 @@ steps:
     entrypoint: 'terraform'
     args:
       - 'apply'
+      # Stateロックの待機時間を設定します。
+      # 先行するビルドが完了するまで最大10分間待機します。
+      # この時間を超えるとタイムアウトエラーとなります。
+      - '-lock-timeout=6m'
       # -auto-approveフラグは、CI/CD環境での非対話的な実行に必須です。
       - '-auto-approve'
     # 'Terraform Init' ステップの完了を待ってから実行します。
     waitFor:
       - 'Terraform Init'
 
+# ビルドのオプション設定
 options:
   # Cloud Buildサービスアカウントが必要なIAM権限を持っていることを確認してください。
   logging: CLOUD_LOGGING_ONLY
