@@ -32,31 +32,37 @@ provider "google" {
   region  = local.region
 }
 
-# --------------------------------------
-# Cloud Storage
-# --------------------------------------
-
-# バケット作成
-resource "google_storage_bucket" "default" {
-  name     = local.bucket
-  location = local.region
-}
-
-# バックエンドサービスのステータス変更待機
-resource "time_sleep" "test" {
-  depends_on      = [google_storage_bucket.default]
+# 180秒間待機するだけのシンプルなリソース
+resource "time_sleep" "wait_for_3_minutes" {
+  # `terraform apply` を実行した際に、この期間だけ待機します。
   create_duration = "180s"
 }
 
-# サンプルコンテンツのアップロード
-resource "google_storage_bucket_object" "image_txt" {
-  name   = "image/test.txt"
-  bucket = google_storage_bucket.default.name
-  source = "./image/test.txt"
-}
+# # --------------------------------------
+# # Cloud Storage
+# # --------------------------------------
 
-resource "google_storage_bucket_object" "image_png" {
-  name   = "image/kitten.png"
-  bucket = google_storage_bucket.default.name
-  source = "./image/kitten.png"
-}
+# # バケット作成
+# resource "google_storage_bucket" "default" {
+#   name     = local.bucket
+#   location = local.region
+# }
+
+# # バックエンドサービスのステータス変更待機
+# resource "time_sleep" "test" {
+#   depends_on      = [google_storage_bucket.default]
+#   create_duration = "180s"
+# }
+
+# # サンプルコンテンツのアップロード
+# resource "google_storage_bucket_object" "image_txt" {
+#   name   = "image/test.txt"
+#   bucket = google_storage_bucket.default.name
+#   source = "./image/test.txt"
+# }
+
+# resource "google_storage_bucket_object" "image_png" {
+#   name   = "image/kitten.png"
+#   bucket = google_storage_bucket.default.name
+#   source = "./image/kitten.png"
+# }
