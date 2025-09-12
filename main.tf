@@ -41,3 +41,9 @@ resource "google_storage_bucket" "default" {
   name     = local.bucket
   location = local.region
 }
+
+# バックエンドサービスのステータス変更待機
+resource "time_sleep" "test" {
+  depends_on      = [google_storage_bucket.default]
+  create_duration = "300s" # 待機する (環境や負荷に応じて調整が必要)
+}
