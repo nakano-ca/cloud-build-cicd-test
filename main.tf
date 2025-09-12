@@ -45,5 +45,18 @@ resource "google_storage_bucket" "default" {
 # バックエンドサービスのステータス変更待機
 resource "time_sleep" "test" {
   depends_on      = [google_storage_bucket.default]
-  create_duration = "300s" # 待機する (環境や負荷に応じて調整が必要)
+  create_duration = "180s"
 }
+
+# サンプルコンテンツのアップロード
+resource "google_storage_bucket_object" "image_txt" {
+  name   = "image/test.txt"
+  bucket = google_storage_bucket.default.name
+  source = "./image/test.txt"
+}
+
+# resource "google_storage_bucket_object" "image_png" {
+#   name   = "image/kitten.png"
+#   bucket = google_storage_bucket.default.name
+#   source = "./image/kitten.png"
+# }
