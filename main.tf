@@ -33,10 +33,16 @@ provider "google" {
 }
 
 # 180秒間待機するだけのシンプルなリソース
-resource "time_sleep" "wait_for_3_minutes" {
+resource "time_sleep" "wait_forA" {
   # `terraform apply` を実行した際に、この期間だけ待機します。
-  create_duration = "190s"
+  create_duration = "180s"
 }
+
+# # 180秒間待機するだけのシンプルなリソース
+# resource "time_sleep" "wait_forB" {
+#   # `terraform apply` を実行した際に、この期間だけ待機します。
+#   create_duration = "190s"
+# }
 
 # # --------------------------------------
 # # Cloud Storage

@@ -23,7 +23,7 @@ steps:
       # Stateロックの待機時間を設定します。
       # 先行するビルドが完了するまで最大10分間待機します。
       # この時間を超えるとタイムアウトエラーとなります。
-      - '-lock-timeout=5m'
+      - '-lock-timeout=1m'
       # -auto-approveフラグは、CI/CD環境での非対話的な実行に必須です。
       - '-auto-approve'
     # 'Terraform Init' ステップの完了を待ってから実行します。
