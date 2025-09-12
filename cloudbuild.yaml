@@ -1,0 +1,27 @@
+# TerraformのCI/CDパイプラインを定義するCloud Build構成ファイル
+# GCSバケット名はTerraformコード（backend.tf）内に直接記述されていることを前提とします。
+steps:
+  # ---------------------------------------------------------------------------
+  # ステップ1: Terraformの初期化
+  # backend.tfの定義に従い、GCSバックエンドを初期化します。
+  # ---------------------------------------------------------------------------
+  - name: 'hashicorp/terraform:1.5.7' # 予測不能な動作を避けるため、バージョンを固定することを強く推奨します
+    id: 'Terraform Init'
+    entrypoint: 'terraform'
+    args:
+      - 'init'
+
+  # ---------------------------------------------------------------------------
+  # ステップ2: Terraformの適用
+  # `terraform apply` を実行して、インフラの変更を適用します。
+  # ---------------------------------------------------------------------------
+  - name: 'hashicorp/terraform:1.5.7'
+    id: 'Terraform Apply'
+    entrypoint: 'terraform'
+    args:
+      - 'apply'
+      # -auto-approveフラグは、CI/CD環境での非対話的な実行に必須です。
+      - '-auto-approve'
+    # 'Terraform Init' ステップの完了を待ってから実行します。
+    waitFor:
+      - 'Terraform Init'
