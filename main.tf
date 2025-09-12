@@ -24,7 +24,7 @@ terraform {
 locals {
   project = "ca-nakano-jb-build-test"
   region  = "asia-northeast1"
-  bucket  = "test-bucket-202509121600"
+  bucket  = "test-bucket-202509121625"
 }
 
 provider "google" {
