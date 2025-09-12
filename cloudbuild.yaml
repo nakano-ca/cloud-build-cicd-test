@@ -5,7 +5,7 @@ steps:
   # ステップ1: Terraformの初期化
   # backend.tfの定義に従い、GCSバックエンドを初期化します。
   # ---------------------------------------------------------------------------
-  - name: 'hashicorp/terraform:1.5.7' # 予測不能な動作を避けるため、バージョンを固定することを強く推奨します
+  - name: 'hashicorp/terraform:1.8.4' # 予測不能な動作を避けるため、バージョンを固定することを強く推奨します
     id: 'Terraform Init'
     entrypoint: 'terraform'
     args:
@@ -15,7 +15,7 @@ steps:
   # ステップ2: Terraformの適用
   # `terraform apply` を実行して、インフラの変更を適用します。
   # ---------------------------------------------------------------------------
-  - name: 'hashicorp/terraform:1.5.7'
+  - name: 'hashicorp/terraform:1.8.4'
     id: 'Terraform Apply'
     entrypoint: 'terraform'
     args:
