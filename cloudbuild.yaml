@@ -25,3 +25,7 @@ steps:
     # 'Terraform Init' ステップの完了を待ってから実行します。
     waitFor:
       - 'Terraform Init'
+
+options:
+  # Cloud Buildサービスアカウントが必要なIAM権限を持っていることを確認してください。
+  logging: CLOUD_LOGGING_ONLY
