@@ -1,9 +1,9 @@
 # local 定義
 locals {
     github_repository           = "nakano-ca/cloud-build-cicd-test"
-    project_id                  = "ca-nakano-jb-build-test"
+    project_id                  = "ca-nakano-jb-tag-test-prd"
     region                      = "asia-northeast1"
-    terraform_service_account   = "gha-demo-sac@ca-nakano-jb-build-test.iam.gserviceaccount.com"
+    terraform_service_account   = "terraform@ca-nakano-jb-tag-test-prd.iam.gserviceaccount.com"
     
     # api 有効化用
     services = toset([                         # Workload Identity 連携用
