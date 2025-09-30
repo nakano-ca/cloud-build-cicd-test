@@ -1,0 +1,34 @@
+# auth-test.yaml
+name: Auth test
+run-name: Auth test by @${{ github.actor }}
+
+on:
+  workflow_dispatch: # Manually run
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  PROJECT_ID: [PROJECT_ID]
+  PROJECT_NUMBER: [PROJECT_NUMBER]
+
+jobs:
+  auth_test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Auth
+      uses: google-github-actions/auth@v2
+      with:
+        project_id: ${{ env.PROJECT_ID }}
+        workload_identity_provider: projects/${{ env.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions
+        service_account: github-actions@${{ env.PROJECT_ID }}.iam.gserviceaccount.com
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Use Cloud SDK
+      run: gcloud config list
