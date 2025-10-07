@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "main" {
-  name          = "[PROJECT_ID]_static_website_bucket"
+  name          = "[PROJECT_ID]_static_website_bucket_test"
   location      = "asia-northeast1"
   storage_class = "STANDARD"
   website {
