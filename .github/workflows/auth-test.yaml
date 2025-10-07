@@ -10,8 +10,8 @@ permissions:
   id-token: write
 
 env:
-  PROJECT_ID: [PROJECT_ID]
-  PROJECT_NUMBER: [PROJECT_NUMBER]
+  PROJECT_ID: ca-nakano-jb-tag-test-prd
+  PROJECT_NUMBER: 267105866500
 
 jobs:
   auth_test:
@@ -24,7 +24,7 @@ jobs:
       uses: google-github-actions/auth@v2
       with:
         project_id: ${{ env.PROJECT_ID }}
-        workload_identity_provider: projects/${{ env.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions
+        workload_identity_provider: projects/${{ env.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-actions-pool-test/providers/gitactions-test
         service_account: github-actions@${{ env.PROJECT_ID }}.iam.gserviceaccount.com
 
     - name: Set up Cloud SDK
