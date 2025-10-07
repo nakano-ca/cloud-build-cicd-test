@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "main" {
-  name          = "[PROJECT_ID]_static_website_bucket_test1"
+  name          = "ca-nakano-jb-tag-test-prd_static_website_bucket_test1"
   location      = "asia-northeast1"
   storage_class = "STANDARD"
   website {
