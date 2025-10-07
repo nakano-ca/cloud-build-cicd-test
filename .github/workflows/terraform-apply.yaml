@@ -13,8 +13,8 @@ permissions:
   id-token: write
 
 env:
-  PROJECT_ID: [PROJECT_ID]
-  PROJECT_NUMBER: [PROJECT_NUMBER]
+  PROJECT_ID: ca-nakano-jb-tag-test-prd
+  PROJECT_NUMBER: 267105866500
   TERRAFORM_VERSION: 1.8.5
 
 jobs:
@@ -29,8 +29,8 @@ jobs:
     - uses: google-github-actions/auth@v2
       with:
         project_id: ${{ env.PROJECT_ID }}
-        workload_identity_provider: projects/${{ env.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions
-        service_account: github-actions@${{ env.PROJECT_ID }}.iam.gserviceaccount.com
+        workload_identity_provider: projects/${{ env.PROJECT_NUMBER }}/locations/global/workloadIdentityPools/github-actions-pool-test/providers/github-actions-test
+        service_account: gitactions-test@${{ env.PROJECT_ID }}.iam.gserviceaccount.com
 
     - name: Terraform fmt
       id: fmt
