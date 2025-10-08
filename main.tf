@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "main" {
-  name          = "ca-nakano-jb-tag-test-prd_static_website_bucket_test3"
+  name          = "ca-nakano-jb-tag-test-prd_static_website_bucket_test_v2"
   location      = "asia-northeast1"
   storage_class = "STANDARD"
   website {
@@ -7,11 +7,11 @@ resource "google_storage_bucket" "main" {
   }
 }
 
-resource "google_storage_bucket" "test" {
-  name          = "ca-nakano-jb-tag-test-prd_bucket_actions_test2"
-  location      = "asia-northeast1"
-  storage_class = "STANDARD"
-}
+# resource "google_storage_bucket" "test" {
+#   name          = "ca-nakano-jb-tag-test-prd_bucket_actions_test_v2"
+#   location      = "asia-northeast1"
+#   storage_class = "STANDARD"
+# }
 
 # 30秒間待つためのリソース
 resource "time_sleep" "wait_for_300_seconds" {
@@ -31,6 +31,12 @@ resource "google_storage_bucket_object" "main" {
 }
 
 terraform {
+
+  backend "gcs" {
+    bucket = "ca-nakano-jb-tag-test-prd-tfstate"
+    prefix = "terraform/state"
+  }
+
   required_providers {
     google = {
       source  = "hashicorp/google"
