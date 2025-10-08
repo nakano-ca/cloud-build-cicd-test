@@ -7,11 +7,11 @@ resource "google_storage_bucket" "main" {
   }
 }
 
-# resource "google_storage_bucket" "test" {
-#   name          = "ca-nakano-jb-tag-test-prd_bucket_actions_test"
-#   location      = "asia-northeast1"
-#   storage_class = "STANDARD"
-# }
+resource "google_storage_bucket" "test" {
+  name          = "ca-nakano-jb-tag-test-prd_bucket_actions_test"
+  location      = "asia-northeast1"
+  storage_class = "STANDARD"
+}
 
 # 30秒間待つためのリソース
 resource "time_sleep" "wait_for_300_seconds" {
