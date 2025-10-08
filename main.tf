@@ -26,7 +26,7 @@ resource "google_storage_bucket_object" "main" {
 
   # time_sleepリソースが完了するまでこのリソースの作成を待つ
   depends_on = [
-    time_sleep.wait_for_30_seconds
+    time_sleep.wait_for_300_seconds
   ]
 }
 
