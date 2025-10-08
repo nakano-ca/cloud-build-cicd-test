@@ -7,11 +7,27 @@ resource "google_storage_bucket" "main" {
   }
 }
 
+# resource "google_storage_bucket" "test" {
+#   name          = "ca-nakano-jb-tag-test-prd_bucket_actions_test"
+#   location      = "asia-northeast1"
+#   storage_class = "STANDARD"
+# }
+
+# 30秒間待つためのリソース
+resource "time_sleep" "wait_for_300_seconds" {
+  create_duration = "300s"
+}
+
 resource "google_storage_bucket_object" "main" {
   name         = "index.html"
   content      = "<html><body>Hello World!</body></html>"
   content_type = "text/html"
   bucket       = google_storage_bucket.main.id
+
+  # time_sleepリソースが完了するまでこのリソースの作成を待つ
+  depends_on = [
+    time_sleep.wait_for_300_seconds
+  ]
 }
 
 terraform {
@@ -19,6 +35,10 @@ terraform {
     google = {
       source  = "hashicorp/google"
       version = ">=5.33.0"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = ">=0.9.1"
     }
   }
   required_version = "1.8.5"
